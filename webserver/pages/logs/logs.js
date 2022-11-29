@@ -3,7 +3,7 @@ const fs = require("fs");
 module.exports = {execute};
 
 function execute (data, res) {
-    let text = fs.readFileSync("./pages/logs/logs.html", "utf-8"); // get the html
+    let text = fs.readFileSync("./webserver/pages/logs/logs.html", "utf-8"); // get the html
 
     if (data && data.includes("&")) {
         start = parseInt(data.split("&")[0]);
@@ -11,7 +11,7 @@ function execute (data, res) {
         
         dates = getDatesInRange(new Date(start * 1000 + 86400000), new Date(end * 1000));
 
-        json = JSON.parse(fs.readFileSync("./data/logs.json", "utf-8"));
+        json = JSON.parse(fs.readFileSync("./webserver/data/logs.json", "utf-8"));
         keys = Object.keys(json).sort((a, b) => parseInt(a) -parseInt(b));
         
         logs = []
@@ -34,7 +34,7 @@ function execute (data, res) {
             csv+=row;
         }
         res.writeHead(200, 'text/html');
-        res.end(fs.readFileSync("./pages/logs/showLogs.html", 'utf-8').replace("__", csv    ));
+        res.end(fs.readFileSync("./webserver/pages/logs/showLogs.html", 'utf-8').replace("__", csv    ));
         return;
     }
 
