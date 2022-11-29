@@ -1,2 +1,2 @@
-web: node webserver/index.js
-start: node webserver/index.js
+web: node index.js
+start: node index.js
