@@ -26,4 +26,3 @@ while True:
     logThread = threading.Thread(target=log, args=[ip, password, read, opened], kwargs={})
     logThread.start()
     cardThread = threading.Thread(target=queryCards, args=[ip, password], kwargs={})
-    cardThread.start()

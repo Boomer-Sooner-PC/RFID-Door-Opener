@@ -9,7 +9,7 @@ def queryCards(ip, password):
         f = open("./src/data/cards.json", "w")
         f.write(text)
         f.close()
-    except: return False
+    except: pass
 
 def log(ip, password, id, opened):
     #password timestamp id opened << format

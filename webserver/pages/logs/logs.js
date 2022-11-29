@@ -29,8 +29,8 @@ function execute (data, res) {
         console.log(logs)
         csv = "TIME,ID,NAME,STATUS";
         for (log of logs) {
-            d = new Date(log.time)
-            row = `#${`${d.getMonth()}-${d.getDate()}-${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`},${log.data.id},TEMP,${log.data.opened}`
+            d = new Date(log.time * 1000)
+            row = `#${`${d.getMonth() + 1}-${d.getDate()}-${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`},${log.data.id},TEMP,${log.data.opened == 'true' ? "opened" : "rejected"}`
             csv+=row;
         }
         res.writeHead(200, 'text/html');
