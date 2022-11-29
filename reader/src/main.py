@@ -8,6 +8,7 @@ ip = config['ip']
 password = config['password']
 
 queryCards(ip, password)
+print("Ready...")
 
 while True:
     read = input()

@@ -32,9 +32,9 @@ const server = http.createServer(async (req, res) => {
                 fn = require("./querys/cards");
                 fn.execute(data, res)
                 break;
-            case "addCard":
-                fn = require("./querys/addCard");
-                fn.execute(data.split("&")[0], data.split("&")[1], res);
+            case "addcard":
+                fn = require("./querys/addcard");
+                fn.execute(data.split("&")[0], data.split("&")[1], data.split("&")[2], res);
                 break;
             case "log":
                 fn = require("./querys/log");
