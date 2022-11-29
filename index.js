@@ -3,7 +3,7 @@ const fs = require('fs');
 const hostname = process.env.HOSTNAME || '127.0.0.1'
 const port = process.env.PORT || 5000; // define port 
 
-process.CONFIG = JSON.parse(fs.readFileSync(__dirname + '/.conf'));
+process.CONFIG = JSON.parse(fs.readFileSync(__dirname + '/webserver/.conf'));
 const server = http.createServer(async (req, res) => {
     res.statusCode = 200;
     url = req.url.split("?")[0]; // devide the data
@@ -29,15 +29,15 @@ const server = http.createServer(async (req, res) => {
     else if (folders[0] == "query") {
         switch (folders[1]) {
             case "cards":
-                fn = require("./querys/cards");
+                fn = require("./webserver/querys/cards");
                 fn.execute(data, res)
                 break;
             case "addcard":
-                fn = require("./querys/addcard");
+                fn = require("./webserver/querys/addcard");
                 fn.execute(data.split("&")[0], data.split("&")[1], data.split("&")[2], res);
                 break;
             case "log":
-                fn = require("./querys/log");
+                fn = require("./webserver/querys/log");
                 data = data.split("&")
                 fn.execute(data[0], data[1], data[2], data[3], res);
                 break;
@@ -65,7 +65,7 @@ server.listen(port, () => {
 })
 
 function fetchPage(name, data, res) {
-    fn = require(`./pages/${name}/${name}`);
+    fn = require(`./webserver/pages/${name}/${name}`);
     try {
         fn.execute(data, res);
     }

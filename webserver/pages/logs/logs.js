@@ -11,8 +11,6 @@ function execute (data, res) {
         
         dates = getDatesInRange(new Date(start * 1000 + 86400000), new Date(end * 1000));
 
-        json = JSON.parse(fs.readFileSync("./webserver/data/logs.json", "utf-8"));
-        keys = Object.keys(json).sort((a, b) => parseInt(a) -parseInt(b));
         
         logs = []
         for (date of dates) {
