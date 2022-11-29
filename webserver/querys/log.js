@@ -7,7 +7,7 @@ function execute (password, timestamp, id, action, res) {
         d = new Date(timestamp * 1000)
         fiN = `${d.getMonth()}-${d.getDate()}-${d.getFullYear()}`;
         try{
-            json = JSON.parse(fs.readFileSync(`./data/logs/${fiN}.json`, "utf-8"));
+            json = JSON.parse(fs.readFileSync(`./webserver/data/logs/${fiN}.json`, "utf-8"));
         }
         catch (e) {
             json = {}
@@ -16,7 +16,7 @@ function execute (password, timestamp, id, action, res) {
             "id": id,
             "opened": action
         }
-        fs.writeFileSync(`./data/logs/${fiN}.json`, JSON.stringify(json, null, 2));
+        fs.writeFileSync(`./webserver/data/logs/${fiN}.json`, JSON.stringify(json, null, 2));
         res.end("sucsess");
     }
     else {

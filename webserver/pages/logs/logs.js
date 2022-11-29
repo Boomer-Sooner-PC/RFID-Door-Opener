@@ -17,7 +17,7 @@ function execute (data, res) {
         logs = []
         for (date of dates) {
             try {
-                json = JSON.parse(fs.readFileSync(`./data/logs/${date}.json`));
+                json = JSON.parse(fs.readFileSync(`./webserver/data/logs/${date}.json`));
                 for (key in json) {
                     logs.push({"time": parseInt(key), "data": json[key]});
                 }

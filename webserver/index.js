@@ -18,7 +18,7 @@ const server = http.createServer(async (req, res) => {
     if (folders[0] == "assets") {
         try {
             if (folders[1] == "images") res.writeHead(200, {'Content-Type': 'image/png'})
-            res.end(fs.readFileSync(`./webserver/assets/${folders[1]}/${folders[2]}`, "utf-8"));
+            res.end(fs.readFileSync(`./assets/${folders[1]}/${folders[2]}`, "utf-8"));
             
         }
         catch {
@@ -29,15 +29,15 @@ const server = http.createServer(async (req, res) => {
     else if (folders[0] == "query") {
         switch (folders[1]) {
             case "cards":
-                fn = require("./webserver/querys/cards");
+                fn = require("./querys/cards");
                 fn.execute(data, res)
                 break;
             case "addCard":
-                fn = require("./webserver/querys/addCard");
+                fn = require("./querys/addCard");
                 fn.execute(data.split("&")[0], data.split("&")[1], res);
                 break;
             case "log":
-                fn = require("./webserver/querys/log");
+                fn = require("./querys/log");
                 data = data.split("&")
                 fn.execute(data[0], data[1], data[2], data[3], res);
                 break;
@@ -65,7 +65,7 @@ server.listen(port, () => {
 })
 
 function fetchPage(name, data, res) {
-    fn = require(`./webserver/pages/${name}/${name}`);
+    fn = require(`./pages/${name}/${name}`);
     try {
         fn.execute(data, res);
     }
