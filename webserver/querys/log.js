@@ -16,8 +16,10 @@ function execute (password, timestamp, id, action, res) {
             "id": id,
             "opened": action
         }
-        fs.writeFileSync(`./webserver/data/logs/${fiN}.json`, JSON.stringify(json, null, 2));
-        res.end("sucsess");
+        fs.open(`./webserver/data/logs/${fiN}.json`, 'w', () => {
+            fs.writeFileSync(`./webserver/data/logs/${fiN}.json`, JSON.stringify(json, null, 2));
+            res.end("sucsess");
+        })
     }
     else {
         res.end("incorrect password");
