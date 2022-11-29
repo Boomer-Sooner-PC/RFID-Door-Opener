@@ -16,10 +16,17 @@ function execute (password, timestamp, id, action, res) {
             "id": id,
             "opened": action
         }
-        fs.open(`./webserver/data/logs/${fiN}.json`, 'w', () => {
+        try {
+        fs.writeFileSync(`./webserver/data/logs/${fiN}.json`, JSON.stringify(json, null, 2));
+        }
+        catch (e) {
+            var createStream = fs.createWriteStream(`./webserver/data/logs/${fiN}.json`);
+            createStream.end();
             fs.writeFileSync(`./webserver/data/logs/${fiN}.json`, JSON.stringify(json, null, 2));
-            res.end("sucsess");
-        })
+
+        }
+        res.end("sucsess");
+        
     }
     else {
         res.end("incorrect password");
