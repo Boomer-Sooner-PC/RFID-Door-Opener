@@ -24,7 +24,7 @@
         function submit () {
             start = Math.floor(new Date(document.times[0]).getTime() / 1000);
             end = Math.floor(new Date(document.times[1]).getTime() / 1000) + 86400;
-            window.location.href += `?${start}&${end}`;
+            window.location.href = `${window.location.href.split("?")[0]}?${start}&${end}`;
         }
     </script>
 </head>

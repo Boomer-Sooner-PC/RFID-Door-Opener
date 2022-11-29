@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logs</title>
+    <script>
+        logs = "__"
+        logs = logs.replace(/#/g, '\n');
+        function m() {
+            table = document.getElementById("demoTable");
+            table.innerHTML = "";
+            for (let row of logs.split('\n')) {
+                let tr = table.insertRow();
+                for (let col of row.split(',')) {
+                let td = tr.insertCell();
+                td.innerHTML = col;
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="m();">
+    <table id="demoTable"></table>
+</body>
+</html>
