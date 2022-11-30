@@ -1,6 +1,7 @@
 import json
 from queries import *
 import threading
+from interface import *
 
 
 config = json.load(open("./.conf"))
@@ -13,16 +14,20 @@ print("Ready...")
 while True:
     read = input()
     opened = False
-    
+   
     cards = json.load(open("./src/data/cards.json", 'r'))
 
     for card in cards:
         if int(read) == (card['number']):
             opened = True
             break
-    
-    if opened: print("opening")
-    else: print("rejected")
+   
+    if opened:
+        print("opening")
+        accept()
+    else:
+        reject()
+        print("rejected")
 
     log(ip, password, read, opened);
     queryCards(ip, password)
