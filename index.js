@@ -41,6 +41,14 @@ const server = http.createServer(async (req, res) => {
                 data = data.split("&")
                 fn.execute(data[0], data[1], data[2], data[3], res);
                 break;
+            case "enterpassword":
+                fn = require("./webserver/querys/enterpassword");
+                fn.execute(data, res);
+                break;
+            case "checkpass":
+                fn = require("./webserver/querys/checkpass");
+                fn.execute(data, res);
+                break;
         }
     }
     else if (folders[0] === 'pages') {

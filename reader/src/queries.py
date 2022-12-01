@@ -16,3 +16,10 @@ def log(ip, password, id, opened):
     try:
         requests.get(f'{ip}/query/log?{password}&{int(time.time())}&{id}&{"true" if opened else "false"}')
     except: pass
+
+def getPassword(ip, password):
+    try:
+        return requests.get(f'{ip}/query/checkpass?{password}').text
+    except:
+        print("error")
+        return "failed"
