@@ -47,9 +47,11 @@ def on_press(key):
                 if( not len(inp) > 4): return
                 opened = False
                 cards = json.load(open("./src/data/cards.json", 'r'))
+                id = inp;
                 for card in cards:
                     print(card["number"])
-                    if str(card['number']) in inp:
+                    if str(card['number']) in str(int(inp)):
+                        id = str(card['number'])
                         opened = True
                 if opened:
                     print("opening")
@@ -58,7 +60,7 @@ def on_press(key):
                     reject()
                     print("rejected")
 
-                log(ip, password, inp, opened);
+                log(ip, password, id, opened);
                 inp=""
                 queryCards(ip, password)
         except Exception as e:

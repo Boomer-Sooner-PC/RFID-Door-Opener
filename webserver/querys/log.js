@@ -25,6 +25,9 @@ function execute (password, timestamp, id, action, res) {
             fs.writeFileSync(`./webserver/data/logs/${fiN}.json`, JSON.stringify(json, null, 2));
 
         }
+        
+        fs.writeFileSync("./webserver/data/last", `${id}`);
+
         res.end("sucsess");
         
     }

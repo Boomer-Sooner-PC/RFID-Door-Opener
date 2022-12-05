@@ -23,12 +23,16 @@ function execute (data, res) {
             catch (e) {}
         }
 
-        
+        names = {}
+        for (card of JSON.parse(fs.readFileSync(`./webserver/data/cards.json`, 'utf-8'))) {
+            names[card['number']] = card['name'];
+        }   
+
         console.log(logs)
         csv = "TIME,ID,NAME,STATUS";
         for (log of logs) {
             d = new Date(log.time * 1000)
-            row = `#${`${d.getMonth() + 1}-${d.getDate()}-${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`},${log.data.id},TEMP,${log.data.opened == 'true' ? "opened" : "rejected"}`
+            row = `#${`${d.getMonth() + 1}-${d.getDate()}-${d.getFullYear()} ${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`},${log.data.id},${Object.keys(names).includes(log.data.id) ? names[log.data.id] : "ID not registed"},${log.data.opened == 'true' ? "opened" : "rejected"}`
             csv+=row;
         }
         res.writeHead(200, 'text/html');
